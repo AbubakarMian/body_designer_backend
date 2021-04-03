@@ -1,10 +1,10 @@
 @extends('layouts.default_module')
 @section('module_name')
-Video
+Plan
 @stop
 @section('add_btn')
 
-{!! Form::open(['method' => 'get', 'route' => ['video.create'], 'files'=>true]) !!}
+{!! Form::open(['method' => 'get', 'route' => ['plan.create'], 'files'=>true]) !!}
 <span>{!! Form::submit('Add', ['class' => 'btn btn-success pull-right']) !!}</span>
 {!! Form::close() !!}
 @stop
@@ -33,40 +33,43 @@ width="400px" style="table-layout:fixed;"
 	<tr>
 
         <th>Name</th>
-		<th>Video</th>
-		<th>Edit</th>
-		<th>Delete</th>  
+		<th>Weeks</th>
+        <th>Add Video</th>
+		<th> Add Equipment</th>
+		<th>Edit  </th>
+		<th>Delete  </th>
       
 
 	</tr>
 </thead>
 <tbody>
 
-    @foreach($video as $v)
+    @foreach($plan as $p)
 
     
 
-       
+        <td >{!! ucwords($p->name) !!}</td>
+		<td >{!! ucwords($p->weeks) !!}</td>
 	
 	
-	<td >{!! ucwords($v->name) !!}</td>
-
-	<td class="mediaaa"> <iframe width="80px" height="50px" src="{{ $v->url }}" frameborder="0" allowfullscreen>  
-	</iframe></td>
-
-       
-
+		
+		<td><a href="{{ url('admin/add/video/'.$p->id)  }}" class='badge bg-info'>    add video
+			</a>
+		</td>
+		<td><a href="{{ url('admin/add/equipment/'.$p->id)  }}" class='badge bg-info'>    add equipment
+		</a>
+	</td>
 	
         <td>
-			{!! link_to_action('Admin\VideoController@edit',
-			'Edit', array($v->id), array('class' => 'badge bg-info')) !!}
+			{!! link_to_action('Admin\PlanController@edit',
+			'Edit', array($p->id), array('class' => 'badge bg-info')) !!}
 
         </td>
 
-		<td>{!! Form::open(['method' => 'POST', 'route' => ['video.delete', $v->id]]) !!}
+		<td>{!! Form::open(['method' => 'POST', 'route' => ['plan.delete', $p->id]]) !!}
 			<a href="" data-toggle="modal" name="activate_delete" data-target=".delete" modal_heading="Alert" modal_msg="Do you want to proceed?">
 				<span class="badge bg-info btn-primary ">
-					{!! $v->deleted_at?'Activate':'Deactivate' !!}</span></a>
+					{!! $p->deleted_at?'Activate':'Deactivate' !!}</span></a>
 			{!! Form::close() !!}
 		</td>
 
@@ -77,7 +80,7 @@ width="400px" style="table-layout:fixed;"
 
 </tbody>
 @section('pagination')
-<span class="pagination pagination-md pull-right">{!! $video->render() !!}</span>
+<span class="pagination pagination-md pull-right">{!! $plan->render() !!}</span>
 <div class="col-md-3 pull-left">
 	<div class="form-group text-center">
 		<div>

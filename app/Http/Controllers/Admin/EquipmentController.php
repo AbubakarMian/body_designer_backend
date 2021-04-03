@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Equipment;
+use App\Models\Plan;
+use App\Models\Plan_equipment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
@@ -104,6 +106,41 @@ class EquipmentController extends Controller
                     'new_value' => $new_value
                 ]);
                 return $response;
-            } 
+            }
+            
+            
+            public function addequipment($plan_id)
+            {
+        
+                $plan = Plan::find($plan_id);
+                $equipment = Equipment::pluck('name', 'id')->toArray();
+                //  dd($videos);
+                return view('admin.add_equipment.create', compact('plan', 'equipment', 'plan_id'));
+            }
+        
+       
+            public function equipmentsave(Request $request, $plan_id)
+    {
+
+
+// dd($request->all());
+
+        $day_nums = $request->day_num;
+        $equipment = [];
+
+        foreach ($request->equipment as $key => $equipment) {
+
+            $videos[] = [
+                'plan_id' => $plan_id,
+                 'week_num' => $day_nums[$key],
+            ];
+        }
+
+        Plan_equipment::insert($equipment);
+    }
+
+
+
+
 }
 

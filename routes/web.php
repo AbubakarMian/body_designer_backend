@@ -94,6 +94,29 @@ Route::get('admin/plan_video/edit/{id}', 'Admin\PlanVideoController@edit')->name
 Route::post('admin/plan_video/update/{id}', 'Admin\PlanVideoController@update')->name('plan_video.update');
 Route::post('admin/plan_video/delete/{id}', 'Admin\PlanVideoController@destroy_undestroy')->name('plan_video.delete');
 
+//////PLAN
+Route::get('admin/plan', 'Admin\PlanController@index')->name('plan.index');
+
+Route::get('admin/plan/create', 'Admin\PlanController@create')->name('plan.create');
+Route::post('admin/plan/save', 'Admin\PlanController@save')->name('plan.save');
+Route::get('admin/plan/edit/{id}', 'Admin\PlanController@edit')->name('plan.edit');
+Route::post('admin/plan/update/{id}', 'Admin\PlanController@update')->name('plan.update');
+Route::post('admin/plan/delete/{id}', 'Admin\PlanController@destroy_undestroy')->name('plan.delete');
+
+// admin/add/video/
+
+Route::get('admin/add/video/{id}', 'Admin\VideoController@addvideo')->name('add.video');
+
+// add_video.save
+Route::post('admin/video/save/{plan_id}', 'Admin\VideoController@videosave')->name('add_video.save');
+
+
+// admin/add/equipment/
+
+Route::get('admin/add/equipment/{id}', 'Admin\EquipmentController@addequipment')->name('add.equipment');
+
+// add_equipment.save
+Route::post('admin/equipment/save/{plan_id}', 'Admin\EquipmentController@equipmentsave')->name('add_equipment.save');
 
 
 //////video

@@ -117,6 +117,12 @@ class AdminController extends Controller
         ];
         $modules[] = [
 
+            'url' => 'admin/plan',
+            'title' => 'Plan ',
+            // 'count' => $count
+        ];
+        $modules[] = [
+
             'url' => 'admin/ultimate_goal',
             'title' => 'Ultimate Goal ',
             // 'count' => $count 

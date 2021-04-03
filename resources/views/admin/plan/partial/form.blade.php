@@ -10,49 +10,27 @@
 </div>
 
 
-
-
-
-
-
-
-<?php
-
-$avatar =  asset('images/courses2.png');
-
-if(isset($video)){
-
-    if($video->url){
-        $video = $video->url;
-    }
-}
-?>
-    
-  
-          
+<div class="form-group">
+    {!! Form::label('weeks','weeks') !!}
+    <div>
+        {!! Form::number('weeks',null, ['class' => 'form-control',
+        'data-parsley-required'=>'true',
+        'data-parsley-trigger'=>'change',
+        'placeholder'=>'weeks','required',
+        'maxlength'=>"100"]) !!}
+    </div>
+</div>
+       
    
 
-    <div class="form-group">
 
-        <div class="form-group pull-right">
-            <img width="100px" src="{!! $video !!}" class="show-product-img imgshow">
-        </div>
+        
 
-        <div class="form-group">
-            {!! Form::label('video','Video') !!}
-            {!! Form::file('video', ['class' => 'choose-video', 'id'=>'avatar'] ) !!}
-            <p class="help-block" id="error">Limit 2MB</p>
-        </div>
-        <div class="form-group">
-            {!! Form::textarea('video_visible',null,['class'=>'form-control' ,
-            'rows'=>'3','placeholder'=>'Enter video URL',
-            'maxlength'=>"225"]) !!}
-            {!!Form::hidden('video')!!}
-    
-        </div> 
+   
 
-    </div>
-    @include('admin.video.partial.image_modal')
+ 
+     
+
         
         <span id="err" class="error-product"></span>
 
